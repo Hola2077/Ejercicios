@@ -17,13 +17,11 @@ private:
     }
     void filtroUno(){
         switch(ce){
-            case 1:inprimir();
-            case 2:inprimir();
-            case 3:inprimir();
-            case 4:inprimir();
-            break;
-            default:cout<<"Puso un numero fuera del rango "<<"1,2,3,4"<<endl;
-        }
+            case 1:inprimir();break;
+            case 2:inprimir();break;
+            case 3:inprimir();break;
+            case 4:inprimir();break;
+            default:cout<<"Puso un numero fuera del rango "<<"1,2,3,4"<<endl;break;}
     }
     void inprimir(){
         cout<<"Antiguo sueldo: "<<su<<"\n";
@@ -32,12 +30,10 @@ private:
     float calcular(){
         float A;
         switch(ce){
-            case 1:A = (su*15)/100;
-            case 2:A = (su*10)/100;
-            case 3:A = (su*8)/100;
-            case 4:A = (su*7)/100;
-            break;
-        }
+            case 1:A = (su*15)/100;break;
+            case 2:A = (su*10)/100;break;
+            case 3:A = (su*8)/100;break;
+            case 4:A = (su*7)/100;break;}
         return A+su;
     }
     
