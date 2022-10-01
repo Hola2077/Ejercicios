@@ -61,9 +61,6 @@ public:
     }else{cout << "Seleccion no valida"<<endl;}
     }
 
-
-
-
 private: 
     int sele = 0, fila = 0, columna = 0;
     bool YY;
