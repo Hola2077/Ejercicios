@@ -4,11 +4,11 @@
 using namespace std;
 class Inprimir{
 public:
-    void inP(int A){cout << "Numero: "<<A<<endl;}
-    void inPAS(int A){cout << "Pasos: "<<A<<endl;}};
+    void inP(long long int A){cout << "Numero: "<<A<<endl;}
+    void inPAS(long long int A){cout << "Pasos: "<<A<<endl;}};
 class Calcular{
 public:
-    float reN(){return S;}
+    long long int reN(){return S;}
     void obtenerN(long A){S = A;}
     void cal(){
         Inprimir inP;
@@ -21,9 +21,9 @@ public:
             else if(PA == 0){S = S/2;}
             PAS ++;}}
 private:
-    long S,PAS = 0,PA,FI;};
+    long long int S,PAS = 0,PA,FI;};
 int main(){
-    int S;
+    long long int S;
     Calcular oN;
     cout << "ingrese un numero: ";
     cin >> S;oN.obtenerN(S);
