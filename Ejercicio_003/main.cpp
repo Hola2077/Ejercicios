@@ -5,9 +5,7 @@ using namespace std;
 class Inprimir{
 public:
     void inP(int A){cout << "Numero: "<<A<<endl;}
-    void inPAS(int A){cout << "Pasos: "<<A<<endl;}
-
-};
+    void inPAS(int A){cout << "Pasos: "<<A<<endl;}};
 class Calcular{
 public:
     float reN(){return S;}
@@ -19,21 +17,14 @@ public:
             PA = S%2;           
             inP.inP(S);
             if(S == 1){inP.inPAS(PAS); break;}
-            if(PA != 0){
-                S = (S*3)+1; 
-            }else if(PA == 0){
-                S = S/2;
-            }
-            PAS ++;
-        }
-    }
+            if(PA != 0){S = (S*3)+1; }
+            else if(PA == 0){S = S/2;}
+            PAS ++;}}
 private:
-    long S,PAS = 0,PA,FI;
-};
+    long S,PAS = 0,PA,FI;};
 int main(){
     int S;
     Calcular oN;
     cout << "ingrese un numero: ";
     cin >> S;oN.obtenerN(S);
-    oN.cal();
-}
+    oN.cal();}
