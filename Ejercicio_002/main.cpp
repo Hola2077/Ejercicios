@@ -22,55 +22,61 @@ public:
         int A = 0;
         cout << "Ingrese numero el numero de columnas(1 ~ 20): ";
         cin >> A;inB(A);return A;}
- 
-    void cosMatris(){
-        int F = 0;int C = 0;int D = 0; //filas, columnas y valor a asignar
-        bool orden = false; //terminar bucle
-        int matris[20][20] = {0};va();
-        while(orden == false){
-            va();
-            for (int A=0;A<outA();A ++){
-                for (int F=0;F<outB();F++){
-                    cout<<" "<<matris[A][F];
-                }
-                cout<<endl;
-            }
-            cout << "Ingrese el valor de "<<F+1<<"."<<C+1<<": ";
-            cin>>D;
-            matris[F][C] = D;
-            if(F != outA()){F ++;};if(C != outA()){C ++;};
-        }
-        
 
+
+    void dibMatris(){////dibujar matris///
+        va();
+        for (int A=0;A<outA();A ++){
+            for (int F=0;F<outB();F++){
+                cout<<"\t"<<matris[A][F];
+            }
+            cout<<endl;
+        }
+    }
+
+    void cosMatris(){//asignar valores ala matris
+        int D = 0;//valor a asignar
+        bool orden = false; //dar orden de terminar bucle //sin usar
+        ;va();
+        while(orden == false){
+            for (int A{0};A<outA();A++){   
+                for(int B=0;B<outB();B++){
+                    dibMatris();
+                    cout << "Ingrese el valor de " << A + 1 << "." << B + 1 << ": ";
+                    cin>>D;
+                    matris[A][B] = D;
+                }
+            }     
+        }
     }
 private:
-    int AA,BB,CC;
+    int AA,BB,CC;int matris[20][20] = {0};
 };
 
 class Matris
 {
 public:
-    int outSele(){return sele;}//salida
+    int outSele(){return sele;}//salidas
     int outFila(){return fila;}
     int outColumna(){return columna;}
     
-    void inSele(int A){sele = A;}//entrada
+    void inSele(int A){sele = A;}//entradas
     void inFila(int A){fila = A;}
     void inColumna(int A){columna = A;}
     
-    void inS(bool A){YY = A;}//entrada
-    bool inS(){return YY;}//salida
+    void inS(bool A){YY = A;}//entrada //sin usar
+    bool inS(){return YY;}//salida //sin usar
 
-    void forma(){
-    Inprimir inprimir;
-    inSele(inprimir.uno());
-    if (outSele() == 1){
-        inFila(inprimir.fila());
-        inColumna(inprimir.columna());
-        inprimir.va();
-        inprimir.cosMatris();
-        if(outFila() == 0 && outColumna() == 0){cout << "No puede tener 0 filas o 0 columnas"<< endl;}
-    }else{cout << "Seleccion no valida"<<endl;}
+    void forma(){//Etc
+        Inprimir inprimir;
+        inSele(inprimir.uno());
+        if (outSele() == 1){
+            inFila(inprimir.fila());
+            inColumna(inprimir.columna());
+            inprimir.va();
+            inprimir.cosMatris();
+            if(outFila() == 0 && outColumna() == 0){cout << "No puede tener 0 filas o 0 columnas"<< endl;}
+        }else{cout << "Seleccion no valida"<<endl;}
     }
 
 private: 
