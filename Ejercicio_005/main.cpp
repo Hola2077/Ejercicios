@@ -7,12 +7,13 @@ int matrisDos[20][20];
 int matrisRe[20][20];
 int fila,columna;
 
-//Nuevas variables//
+//Nuevas variables y funciones//
 
 void borrar(){
 	system("cls"); //clear en linux//
 };
 
+//////////////Viejo///////////
 class matris{
 public:
 	void tres(){
@@ -67,12 +68,13 @@ public:
 		}
 	}
 };
+/////////////////Nuevo///////////////////
 
 class menu{
 public:
-	void uno(){
+	int uno(){
 		int A = 0;	
-		string primera = "Ingrese una obsion: ";
+		string primera = "Ingrese una opcion: ";
 		bool orden = false;
 		while(orden != true){
 			borrar();
@@ -88,14 +90,73 @@ public:
 				orden = true;
 			}else{primera = "Valor no valido intente de nuevo: ";}
 		}
+		return A;
+	}
+};
+
+class definir{
+public:
+	void rend(int fila, int columna){
+		for(int A = 1; A<=fila;A++){
+			for(int B = 1; B<=columna;B++){
+				cout<<"\t"<<matrisUno[A][B];
+			}
+			cout<<endl;
+		}
+	}
+	
+	void matris(int fila,int columna){
+		bool orden = false;
+		int aFila,aColumna;
+		while(orden == false){
+			for(int A = 1; A<=fila;A++){
+				aFila = A;
+				for(int B = 1; B<=columna;B++){
+					aColumna = B;
+					system("cls");
+					rend(fila,columna);	
+					cout<<endl<<"Ingrese el numero en la posicion "<<A<<", "<<B<<": ";
+					cin>>matrisUno[A][B];		
+					matrisRe[A][B] += matrisUno[A][B];
+				}
+			cout<<endl;
+			}
+			borrar();
+			if(aFila == fila && aColumna == columna){
+				break;
+			}
+		}
+	}
+};
+
+class  selecciones{
+public:
+	void nunM(){
+		definir definir;
+		int fila,columna;
+		borrar();
+		cout<<"Ingres el numero de Filas: "; 
+		cin>>fila;cout<<endl;
+		cout<<"Ingres el numero de Columna: "; 
+		cin>>columna;cout<<endl;
+		definir.matris(fila,columna);
+	}
+	
+	void filtroUno(int A){
+		switch (A){
+			case 1: nunM();
+			break;
+			default: cout<< A ;
+			break;
+		}
 	}
 };
 
 int main(){
-	
 	menu menu;
-	
-	menu.uno();
+	selecciones seleccion;
+	int opcion = menu.uno();
+	seleccion.filtroUno(opcion);
 	
 	/*
 	matris MatrisA;
