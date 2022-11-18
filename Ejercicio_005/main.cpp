@@ -15,11 +15,11 @@ int dosSeleMove = 0;
 int matrisA[50][50];int longMatrisA[1];
 int matrisB[50][50];int longMatrisB[1];
 
-void borrar(){
-	system("cls"); //clear en linux//
-};
+void borrar(){system("clear");}; // "cls" en windows // "clear" en linux ////
 
-class menu{
+void pausa(){system("read -rsp $'Presione una tecla retroseder...\n'");}; // "pause" en windows // "read -rsp $'#####\n'" en linux ////
+
+class menu{ /// Clase dedicada a mostrar menus,etc ///
 public:
 	int uno(){
 		int A = 0;	
@@ -37,12 +37,13 @@ public:
 			cout<<"7 Restar"<<endl;
 			cout<<"8 Salir"<<endl<<endl;
 			cout<<primera;cin>>A;
-			if(A>0 && A<=6){
+			if(A>0 && A<=8){ ///Actualisar cada que se agrege una obsion///
 				orden = true;
 			}else{primera = "Valor no valido intente de nuevo: ";}
 		}
 		return A;
 	}
+	
 	void mover(){
 		borrar();
 		cout<<"1 Matris (A)"<<endl;
@@ -50,14 +51,14 @@ public:
 		cout<<"3 Matris (C)"<<endl;
 		cout<<"4 Matris (D)"<<endl<<endl;
 		cout<<"Que matris desea operar?: ";cin>>unoSeleMove;
-		cout<<"Y con cual?: ";cin>>unoSeleMove;
+		cout<<"Y con cual?: ";cin>>dosSeleMove;
 		borrar();
 	}
 };
 
-class definir{
+class definir{ ///clase dedicada a asignar valores ///
 public:
-	void asignar(int Fila,int Columna ,int Valor ,int Seleccion){
+	void asignar(int Fila,int Columna ,int Valor ,int Seleccion){///asigna valores ala matris///
 		switch(Seleccion){
 			case 1: matrisUno[Fila][Columna] = Valor;longMatrisUno[0] = Fila;longMatrisUno[1] = Columna;break;
 			case 2: matrisDos[Fila][Columna] = Valor;longMatrisDos[0] = Fila;longMatrisDos[1] = Columna;break;
@@ -67,29 +68,36 @@ public:
 			case 6: matrisB[Fila][Columna] = Valor;longMatrisB[0] = Fila;longMatrisB[1] = Columna;break;
 		}
 	}
-	int leer(int Fila,int Columna ,int Seleccion){
+
+	int leer(int Fila,int Columna ,int Seleccion){///Leer valores de matris////
+        int A = 0;
 		switch(Seleccion){
-			case 1: return matrisUno[Fila][Columna];break;
-			case 2: return matrisDos[Fila][Columna];break;
-			case 3: return matrisTres[Fila][Columna];break;
-			case 4: return matrisCuatro[Fila][Columna];break;
-			case 5: return matrisA[Fila][Columna];break;
-			case 6: return matrisB[Fila][Columna];break;
+			case 1: A = matrisUno[Fila][Columna];break;
+			case 2: A = matrisDos[Fila][Columna];break;
+			case 3: A = matrisTres[Fila][Columna];break;
+			case 4: A = matrisCuatro[Fila][Columna];break;
+			case 5: A = matrisA[Fila][Columna];break;
+			case 6: A = matrisB[Fila][Columna];break;
+            case 7: A = matrisRe[Fila][Columna];break;
 		}
+        return A;
 	}
 	
-	int longg(int seleccion,int valor){
+	int longg(int seleccion,int valor){ /// Leer longitud de las matrise///
+        int A = 0;
 		switch(seleccion){ //// 0 = Fila / 1 = Columna//////
-			case 1: return longMatrisUno[valor];break;
-			case 2: return longMatrisDos[valor];break;
-			case 3: return longMatrisTres[valor];break;
-			case 4: return longMatrisCuatro[valor];break;
-			case 5: return longMatrisA[valor];break;
-			case 6: return longMatrisB[valor];break;
+			case 1: A = longMatrisUno[valor];break;
+			case 2: A = longMatrisDos[valor];break;
+			case 3: A = longMatrisTres[valor];break;
+			case 4: A = longMatrisCuatro[valor];break;
+			case 5: A = longMatrisA[valor];break;
+			case 6: A = longMatrisB[valor];break;
+			case 7: A = longMatrisRe[valor];break;
 		}
+        return A;
 	}
 	
-	int Alongg(int seleccion,int casilla,int valor){
+	void Alongg(int seleccion,int casilla,int valor){ ////Asignar valores alas matrises/////
 		switch(seleccion){ //// 0 = Fila / 1 = Columna//////
 			case 1: longMatrisUno[casilla] = valor;break;
 			case 2: longMatrisDos[casilla] = valor;break;
@@ -97,10 +105,11 @@ public:
 			case 4: longMatrisCuatro[casilla] = valor;break;
 			case 5: longMatrisA[casilla] = valor;break;
 			case 6: longMatrisB[casilla] = valor;break;
+			case 7: longMatrisRe[casilla] = valor;break;
 		}
 	}
 	
-	void rend(int fila, int columna,int seleccion){
+	void rend(int fila, int columna,int seleccion){ /////Mostar matris///
 		for(int A = 1; A<=fila;A++){
 			for(int B = 1; B<=columna;B++){
 				cout<<"\t"<<leer(A,B,seleccion);
@@ -109,7 +118,7 @@ public:
 		}
 	}
 	
-	void matris(int fila,int columna,int seleccion){
+	void matris(int fila,int columna,int seleccion){ ///Asignar valores en la matris///
 		bool orden = false;
 		int aFila,aColumna,valor;
 		while(orden == false){
@@ -126,78 +135,71 @@ public:
 			cout<<endl;
 			}
 			borrar();
-			if(aFila == fila && aColumna == columna){
+			if(aFila == fila && aColumna == columna){ /// Para cuando filas y columnas ya esten completadas ///
 				string Si_No = "No";
 				rend(fila,columna,seleccion);	
 				cout<<endl<<"Desea Corregir Si o No?: ";cin>>Si_No;
 				if(Si_No == "N" || Si_No == "No" || Si_No == "NO" || Si_No == "no" || Si_No == "n" || Si_No == "oN"){
 					break;
-				}
-				
+				}		
 			}
 		}
 	}
 };
 
-class mover{
+class mover{ ///Dedicado a aser Movimientos entre Matrises /// $$$$$Revisar$$$$$
 public:
-	void moverLogi(int seleccion,int donde){ ////Mover Logica/////
+	void moverLogi(int seleccionUno,int dondeUno,int seleccionDos,int dondeDos){ ////Mover Logica/////
 		definir definir;
-		
-		for(int fila = 1;fila<=definir.longg(seleccion,0);fila++){
-			for(int columna = 1;columna<=definir.longg(seleccion,1);columna++){
-				int valor = definir.leer(fila,columna,seleccion);
-				definir.asignar(fila,columna,valor,donde);
-				////
-				definir.Alongg(donde,0,definir.longg(seleccion,0));
-				definir.Alongg(donde,1,definir.longg(seleccion,1));
+		for(int fila = 1;fila<=definir.longg(seleccionUno,0);fila++){  /// 0 para fila///
+			for(int columna = 1;columna<=definir.longg(seleccionDos,1);columna++){ /// 1 para columna///
+				definir.asignar(fila,columna,definir.leer(fila,columna,seleccionUno),dondeUno);
+				definir.asignar(fila,columna,definir.leer(fila,columna,seleccionDos),dondeDos);
+				///////////Mover longitudes///////////////
+				definir.Alongg(5,0,definir.longg(seleccionUno,0));definir.Alongg(5,1,definir.longg(seleccionUno,1));
+				definir.Alongg(6,0,definir.longg(seleccionDos,0));definir.Alongg(6,1,definir.longg(seleccionDos,1));
 			}
 		}
-	}
+    }
 	
-	void moverUniv(int donde,int hacia){/////Mover Universal//// moverLogi(donde,hacia donde) /// 5 es A /// 6 es B///
-		switch(donde){
-			case 1: moverLogi(1,hacia);break;
-			case 2: moverLogi(2,hacia);break;
-			case 3: moverLogi(3,hacia);break;
-			case 4: moverLogi(4,hacia);break;
-		}
-	}
-	
-	void moverS_R(){ ///Mover Resta y Suma/// int unoSeleMove = 1 - 4; int dosSeleMove = 1 - 4; ///
+	void moverS_R(){ ///Mover Suma y Resta/// int unoSeleMove = 1 - 4"Matris que se va a mover" int dosSeleMove = 1 - 4"Matris que se va a mover" ///
 		menu menu;
 		menu.mover();
-		moverUniv(unoSeleMove,5);
-		moverUniv(dosSeleMove,6);
-	}
-	
+		moverLogi(unoSeleMove,5,dosSeleMove,6); /// moverLogi(L-Matris a Mover,L2-En donde se va a Mover,L-..,L2-...)
+	}	
 };
 
-class operaciones{
+class operaciones{ ///clase dedicada para logica: sumar,resta,etc///
 public:
-	bool conpararSuma(){
-		bool A = false;
-		if(longMatrisA[0] == longMatrisB[0] && longMatrisA[1] == longMatrisB[1]){
-			A = true;
-		}
-		
-		return A;
-	}
-	
-	void suma(){
+	void suma(){ ///Logica para sumar///
 		mover mover;
+		definir definir;
 		mover.moverS_R();
-		if(conpararSuma() == true){
+		if(definir.longg(5,0) == definir.longg(6,0) && definir.longg(5,1) == definir.longg(6,1)){
 			for(int fila = 1; fila<=longMatrisA[0];fila++){
 				for(int columna = 1; columna<=longMatrisA[1];columna++){
 					matrisRe[fila][columna] = matrisA[fila][columna] + matrisB[fila][columna];
+					definir.Alongg(7,0,definir.longg(5,0));definir.Alongg(7,1,definir.longg(5,1));
 				}
 			}
-		}else{cout<<"Las Matrises no tienen las mismas dimenciones"<<endl;system("pause");}
+			definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
+		}else{cout<<"Las Matrises no tienen las mismas dimenciones"<<endl;pausa();}
+	}
+	void resta(){ ///Logica para Restar///
+		mover mover;
+		definir definir;
+		mover.moverS_R();
+		if(definir.longg(5,0) == definir.longg(6,0) && definir.longg(5,1) == definir.longg(6,1)){
+			for(int fila = 1; fila<=longMatrisA[0];fila++){
+				for(int columna = 1; columna<=longMatrisA[1];columna++){
+					matrisRe[fila][columna] = matrisA[fila][columna] - matrisB[fila][columna];
+					definir.Alongg(7,0,definir.longg(5,0));definir.Alongg(7,1,definir.longg(5,1));
+				}
+			}
+			definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
+		}else{cout<<"Las Matrises no tienen las mismas dimenciones"<<endl;pausa();}
 	}
 };
-
-
 
 class  selecciones{
 public:
@@ -214,17 +216,17 @@ public:
 	
 	void filtroUno(int A){
 		operaciones operaciones;
+        definir definir;
 		switch (A){
 			case 1: nunM(1);break; //para matris A	
 			case 2: nunM(2);break; //para matris B	
-			case 3: nunM(3);break;  //...
-			case 4: nunM(4);break;  //...
-		
-			case 5: 
+			case 3: nunM(3);break; //...
+			case 4: nunM(4);break; //...
+			case 5: borrar();definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
 			break; 
-			case 6: operaciones.suma();
+			case 6: operaciones.suma();borrar();
 			break; 
-			case 7:
+			case 7: operaciones.resta();borrar();
 			break; 
 			default: cout<< "????" ;
 			break;
@@ -234,10 +236,9 @@ public:
 
 int main(){
 	menu menu;
-	selecciones seleccion;	while(true){
+	selecciones seleccion;	
+	while(true){
 		int opcion = menu.uno();
 		seleccion.filtroUno(opcion);
-		
 	}
-
 }
