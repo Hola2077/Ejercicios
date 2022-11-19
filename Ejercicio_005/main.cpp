@@ -35,7 +35,7 @@ public:
 			cout<<"5 Ver Matris R (Resultado)"<<endl;
 			cout<<"6 Sumar"<<endl;
 			cout<<"7 Restar"<<endl;
-			cout<<"8 Salir"<<endl<<endl;
+			cout<<"8 Multiplicasion"<<endl<<endl;
 			cout<<primera;cin>>A;
 			if(A>0 && A<=8){ ///Actualisar cada que se agrege una obsion///
 				orden = true;
@@ -162,14 +162,14 @@ public:
 		}
     }
 	
-	void moverS_R(){ ///Mover Suma y Resta/// int unoSeleMove = 1 - 4"Matris que se va a mover" int dosSeleMove = 1 - 4"Matris que se va a mover" ///
+	void moverS_R(){ ///Mover Suma, Resta, Multicasion/// int unoSeleMove = 1 - 4"Matris que se va a mover" int dosSeleMove = 1 - 4"Matris que se va a mover" ///
 		menu menu;
 		menu.mover();
 		moverLogi(unoSeleMove,5,dosSeleMove,6); /// moverLogi(L-Matris a Mover,L2-En donde se va a Mover,L-..,L2-...)
 	}	
 };
 
-class operaciones{ ///clase dedicada para logica: sumar,resta,etc///
+class operaciones{ ///clase dedicada para logica: sumar,resta,multiplicasion,etc///
 public:
 	void suma(){ ///Logica para sumar///
 		mover mover;
@@ -199,6 +199,25 @@ public:
 			definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
 		}else{cout<<"Las Matrises no tienen las mismas dimenciones"<<endl;pausa();}
 	}
+
+	void multiplicasion(){
+		mover mover;
+		definir definir;
+		mover.moverS_R();
+		if(definir.longg(5,1) == definir.longg(6,0)){		
+			for(int A = 1; A<=longMatrisB[1];A++){
+				cout<<"OK";
+				for(int B = 1; B<=longMatrisA[0];B++){
+					
+					for(int C = 1; C<=longMatrisB[0];C++){
+						
+						matrisRe[B][A] += (matrisA[A][C] * matrisB[C][A]);
+						definir.Alongg(7,0,definir.longg(5,0));definir.Alongg(7,1,definir.longg(6,1));
+					}				
+				}
+			}definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
+		}else{cout<<"NO";}
+	}
 };
 
 class  selecciones{
@@ -218,16 +237,14 @@ public:
 		operaciones operaciones;
         definir definir;
 		switch (A){
-			case 1: nunM(1);break; //para matris A	
-			case 2: nunM(2);break; //para matris B	
-			case 3: nunM(3);break; //...
-			case 4: nunM(4);break; //...
-			case 5: borrar();definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();
-			break; 
-			case 6: operaciones.suma();borrar();
-			break; 
-			case 7: operaciones.resta();borrar();
-			break; 
+			case 1: nunM(1);break; //para matris A	//OK
+			case 2: nunM(2);break; //para matris B	//OK
+			case 3: nunM(3);break; //...            //OK
+			case 4: nunM(4);break; //...            //OK
+			case 5: borrar();definir.rend(longMatrisRe[0],longMatrisRe[1],7);pausa();break;  //OK
+			case 6: operaciones.suma();borrar();break;  //OK
+			case 7: operaciones.resta();borrar();break; //OK
+			case 8: operaciones.multiplicasion();borrar();break; //OK
 			default: cout<< "????" ;
 			break;
 		}
